@@ -2,15 +2,17 @@
 
 from django.db import migrations
 
+
 def create_data(apps, schema_editor):
-    VolunteerType = apps.get_model('volunteertype', 'Volunteer')
-    VolunteerType()
+    VolunteerType = apps.get_model('volunteer', 'VolunteerType')
+    VolunteerType(name='TestType', restricted='0', description='', requires_driver_license=False).save()
+
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('volunteer', '0001_initial'),
     ]
 
     operations = [
+        migrations.RunPython(create_data)
     ]
