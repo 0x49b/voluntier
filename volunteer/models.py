@@ -9,7 +9,7 @@ class VolunteerType(models.Model):
 
     name = models.CharField(max_length=50)
     restricted = models.IntegerField()
-    description = models.TextField()
+    description = models.TextField(blank=True)
     requires_driver_license = models.BooleanField()
 
     def __str__(self):

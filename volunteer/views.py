@@ -27,8 +27,18 @@ def volunteertype_list(request):
 @api_view(['PUT', 'DELETE'])
 def volunteertype_detail(request, pk):
     try:
-        volunteer_type = VolunteerType.objects.get(id=pk)
+        volunteer_type = VolunteerType.objects.get(pk=pk)
     except VolunteerType.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     # todo implement all for this method
+    if request.method == 'PUT':
+        serializer = VolunteerTypeSerializer(volunteer_type, data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        volunteer_type.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
