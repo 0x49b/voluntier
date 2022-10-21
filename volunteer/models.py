@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 
@@ -7,6 +8,7 @@ class VolunteerType(models.Model):
         verbose_name = "Volunteer Type"
         verbose_name_plural = "Volunter Types"
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50)
     restricted = models.IntegerField()
     description = models.TextField(blank=True)
