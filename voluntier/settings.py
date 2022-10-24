@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'volunteer',
     'frontend',
     'user',
-    'auth'
+    'auth',
+    'event',
 
 ]
 
